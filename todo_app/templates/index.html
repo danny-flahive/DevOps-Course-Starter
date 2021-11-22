@@ -13,8 +13,13 @@
       <ul class="list-group mb-4">
         {% for item in items %}
         <li>{{ item.title }} - {{ item.status }}</li>
+        <ul>
+          <li><a href="/update/{{ item.id }}">Mark as completed</a></li>
+          <li><a href="/remove/{{ item.id }}">Remove item</a></li>
+        </ul>
         {% endfor %}
       </ul>
+      <h2>Add Item</h2>
       <form action="/add", method="post", class="form">
         <div>
           <label for="title">Enter the task: </label>
