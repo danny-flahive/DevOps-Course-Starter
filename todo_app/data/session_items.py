@@ -4,7 +4,7 @@ _DEFAULT_ITEMS = [
     { 'id': 1, 'status': 'Not Started', 'title': 'List saved todo items' },
     { 'id': 2, 'status': 'Not Started', 'title': 'Allow new items to be added' }
 ]
-
+_SORT_ORDER = {'Not Started': 0, 'Completed': 1}
 
 def get_items():
     """
@@ -42,13 +42,13 @@ def add_item(title):
     """
     items = get_items()
 
-    # Determine the ID for the item based on that of the previously added item
-    id = items[-1]['id'] + 1 if items else 0
-
+    # Determine the ID for the item based on that of the highest in the list
+    id = get_next_id()
     item = { 'id': id, 'title': title, 'status': 'Not Started' }
 
     # Add the item to the list
     items.append(item)
+    items.sort(key=lambda val: _SORT_ORDER[val['status']])
     session['items'] = items
 
     return item
@@ -63,7 +63,20 @@ def save_item(item):
     """
     existing_items = get_items()
     updated_items = [item if item['id'] == existing_item['id'] else existing_item for existing_item in existing_items]
-
+    updated_items.sort(key=lambda val: _SORT_ORDER[val['status']])
     session['items'] = updated_items
 
     return item
+
+def remove_item(id):
+    items = get_items()
+    items = [item for item in items if item['id'] != id]
+    session['items'] = items
+    return
+
+def get_next_id():
+    items = get_items()
+    if items.length == 0:
+        return 1
+    maximum_existing_id = max([item['id'] for item in items])
+    return maximum_existing_id + 1
