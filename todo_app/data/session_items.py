@@ -78,8 +78,7 @@ def remove_item(id):
 
 def get_next_id():
     items = get_items()
-    max_id = 0
-    for item in items:
-        if item['id'] > max_id:
-            max_id = item['id']
-    return max_id + 1
+    if items.length == 0:
+        return 1
+    maximum_existing_id = max([item['id'] for item in items])
+    return maximum_existing_id + 1
