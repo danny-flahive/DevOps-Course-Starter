@@ -4,7 +4,6 @@ _DEFAULT_ITEMS = [
     { 'id': 1, 'status': 'Not Started', 'title': 'List saved todo items' },
     { 'id': 2, 'status': 'Not Started', 'title': 'Allow new items to be added' }
 ]
-_current_id = 3
 _SORT_ORDER = {'Not Started': 0, 'Completed': 1}
 
 def get_items():
@@ -72,7 +71,6 @@ def save_item(item):
 def remove_item(id):
     items = get_items()
     items = [item for item in items if item['id'] != id]
-    print(items)
     session['items'] = items
     return
 
