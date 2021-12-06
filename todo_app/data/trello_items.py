@@ -1,4 +1,5 @@
 import os, requests
+from todo_app.Item import Item
 
 key = os.getenv("TRELLO_API_KEY")
 token = os.getenv("TRELLO_API_TOKEN")
@@ -6,14 +7,14 @@ board = os.getenv("TRELLO_BOARD_ID")
 headers = {"Accept" : "application/json"}
 
 def get_items():
-    global cards
     url = f"https://api.trello.com/1/boards/{board}/lists?key={key}&token={token}&cards=open"
     response = requests.request("GET", url, headers=headers).json()
-    cards = [{}]
-    cards.clear()
+    cards = []
+    #cards.clear()
     for list in response:
         for card in list["cards"]:
-            cards.append({"id" : card["id"], "title" : card["name"], "status" : list["name"]})
+            #cards.append({"id" : card["id"], "title" : card["name"], "status" : list["name"]})
+            cards.append(Item.from_trello_card(card, list))
     return cards
 
 def add_item(title: str):

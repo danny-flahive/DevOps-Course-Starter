@@ -13,7 +13,7 @@
       <ul class="list-group mb-4">
         {% for item in items %}
         <li class="list-group-item">
-          {{ item.title }} - {{ item.status }}
+          {{ item.name }} - {{ item.status }}
           <div class="button-group">
             <a class="btn btn-secondary btn-sm" role="button" href="/update/{{ item.id }}">Mark as completed</a>
             <a class="btn btn-secondary btn-sm" role="button" href="/remove/{{ item.id }}">Remove item</a>
