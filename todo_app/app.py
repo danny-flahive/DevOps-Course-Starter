@@ -1,5 +1,4 @@
 from flask import render_template, request, redirect, Flask
-import todo_app.data.session_items as session_items
 import todo_app.data.trello_items as trello_items
 
 from todo_app.flask_config import Config
@@ -18,11 +17,11 @@ def add():
     return redirect('/')
 
 @app.route('/update/<id>')
-def mark_completed(id):
+def mark_completed(id: str):
     trello_items.complete_item(id)
     return redirect('/')
 
 @app.route('/remove/<id>')
-def remove(id):
+def remove(id: str):
     trello_items.remove_item(id)
     return redirect('/')
