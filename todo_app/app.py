@@ -13,7 +13,7 @@ def index():
 
 @app.route('/add', methods=['POST'])
 def add():
-    trello_items.add_item(request.form.get('title'))
+    trello_items.add_item(request.form.get('title'), request.form.get("description"))
     return redirect('/')
 
 @app.route('/update/<id>')

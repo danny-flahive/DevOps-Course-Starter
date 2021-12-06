@@ -15,9 +15,9 @@ def get_items() -> list:
             cards.append(Item.from_trello_card(card, list))
     return cards
 
-def add_item(title: str) -> None:
+def add_item(title: str, description: str) -> None:
     list_id = __get_list_id__("To Do")
-    url = f"https://api.trello.com/1/cards?key={key}&token={token}&name={title}&idList={list_id}"
+    url = f"https://api.trello.com/1/cards?key={key}&token={token}&desc={description}&name={title}&idList={list_id}"
     print(requests.request("POST", url, headers=headers))
 
 def complete_item(id: str) -> None:
