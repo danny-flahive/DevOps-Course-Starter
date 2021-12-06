@@ -26,6 +26,10 @@ def complete_item(id: str):
     url = f"https://api.trello.com/1/cards/{id}?key={key}&token={token}&idList={new_list_id}"
     requests.request("PUT", url, headers=headers)
 
+def remove_item(id: str):
+    url = f"https://api.trello.com/1/cards/{id}?key={key}&token={token}"
+    requests.request("DELETE", url, headers=headers)
+
 def __get_list_id__(name: str) -> str:
     url = f"https://api.trello.com/1/boards/{board}/lists?key={key}&token={token}"
     response = requests.request("GET", url, headers=headers).json()

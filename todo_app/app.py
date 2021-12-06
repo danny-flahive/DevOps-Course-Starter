@@ -19,13 +19,10 @@ def add():
 
 @app.route('/update/<id>')
 def mark_completed(id):
-    # item = session_items.get_item(id)
-    # item['status'] = "Completed"
-    # session_items.save_item(item)
     trello_items.complete_item(id)
     return redirect('/')
 
-@app.route('/remove/<int:id>')
+@app.route('/remove/<id>')
 def remove(id):
-    session_items.remove_item(id)
+    trello_items.remove_item(id)
     return redirect('/')
