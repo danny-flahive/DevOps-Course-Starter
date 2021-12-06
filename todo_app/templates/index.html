@@ -23,12 +23,12 @@
         {% endfor %}
       </ul>
       <h2>Add Item</h2>
-      <form action="/add", method="post", class="form">
+      <form action="/add", method="post", class="form-group">
         <div>
-          <label for="title" class="form-group">Enter the task: </label>
-          <input type="text" name="title" id="title" class="form-control" required>
-          <label for="description" class="form-group">Enter a description: </label>
-          <input type="text" name="description" id="description" class="form-control" required>
+          <label class="control-label" for="title" class="form-group">Enter the task: </label>
+          <input class="form-control" type="text" name="title" id="title" class="form-control" required>
+          <label class="control-label" for="description" class="form-group">Enter a description: </label>
+          <input class="form-control" type="text" name="description" id="description" class="form-control">
         </div>
         <div>
           <input type="submit" value="Submit Task" class="btn btn-primary">
