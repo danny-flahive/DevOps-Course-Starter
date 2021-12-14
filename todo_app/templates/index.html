@@ -16,7 +16,9 @@
           {{ item.name }} - {{ item.status }}
           <br> {{ item.description }}
           <div class="button-group">
-            <a class="btn btn-secondary btn-sm" role="button" href="/update/{{ item.id }}">Mark as completed</a>
+            {% if item.status != "Done" %}
+              <a class="btn btn-secondary btn-sm" role="button" href="/update/{{ item.id }}">Mark as completed</a>
+            {% endif %}
             <a class="btn btn-secondary btn-sm" role="button" href="/remove/{{ item.id }}">Remove item</a>
           </div>
         </li>
