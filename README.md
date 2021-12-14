@@ -1,5 +1,9 @@
 # DevOps Apprenticeship: Project Exercise
 
+## Prerequisites
+
+You should have an account with [Trello](https://trello.com/signup) and an [API key and token](https://trello.com/app-key) for the service. If you haven't already, create a board for use with this project.
+
 ## System Requirements
 
 The project uses poetry for Python to create an isolated environment and manage package dependencies. To prepare your system, ensure you have an official distribution of Python version 3.7+ and install Poetry using one of the following commands (as instructed by the [poetry documentation](https://python-poetry.org/docs/#system-requirements)):
@@ -31,6 +35,7 @@ $ cp .env.template .env  # (first time only)
 ```
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
+You should replace the placeholders for in the file with your own Trello API key and token. You will also need the board ID of the board you created for this project, which you can get by addding .json to the end of the board URL - the first element should be your board ID.
 
 ## Running the App
 
