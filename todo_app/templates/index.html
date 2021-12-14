@@ -17,9 +17,15 @@
           <br> {{ item.description }}
           <div class="button-group">
             {% if item.status != "Done" %}
-              <a class="btn btn-secondary btn-sm" role="button" href="/update/{{ item.id }}">Mark as completed</a>
+              <form action="/update/{{ item.id }}", method="post", class="form-group">
+                <input type="submit" value="Mark as Completed" class="btn btn-secondary btn-sm">
+              </form>
+              <!-- <a class="btn btn-secondary btn-sm" role="button" href="/update/{{ item.id }}">Mark as completed</a> -->
             {% endif %}
-            <a class="btn btn-secondary btn-sm" role="button" href="/remove/{{ item.id }}">Remove item</a>
+            <form action="/remove/{{ item.id }}", method="post", class="form-group">
+              <input type="submit" value="Remove Item" class="btn btn-secondary btn-sm">
+            </form>
+            <!-- <a class="btn btn-secondary btn-sm" role="button" href="/remove/{{ item.id }}">Remove item</a> -->
           </div>
         </li>
         {% endfor %}
