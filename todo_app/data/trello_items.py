@@ -4,7 +4,7 @@ from todo_app.Item import Item
 board = os.getenv("TRELLO_BOARD_ID")
 headers = {"Accept" : "application/json"}
 
-def get_items() -> list:
+def get_items() -> list[Item]:
     url = f"https://api.trello.com/1/boards/{board}/lists"
     params = _get_auth_params()
     params["cards"] = "open"
@@ -15,18 +15,18 @@ def get_items() -> list:
             cards.append(Item.from_trello_card(card, list))
     return cards
 
-def add_item(title: str, description: str) -> None:
+def add_item(title: str, description: str = "", board: str = "To Do") -> None:
     url = f"https://api.trello.com/1/cards"
     params = _get_auth_params()
     params["desc"] = description
     params["name"] = title
-    params["idList"] = _get_list_id("To Do")
+    params["idList"] = _get_list_id(board)
     print(requests.request("POST", url, params=params, headers=headers))
 
-def complete_item(id: str) -> None:
+def change_status(id: str, board: str = "Done") -> None:
     url = f"https://api.trello.com/1/cards/{id}"
     params = _get_auth_params()
-    params["idList"] = _get_list_id("Done")
+    params["idList"] = _get_list_id(board)
     requests.request("PUT", url, params=params, headers=headers)
 
 def remove_item(id: str) -> None:

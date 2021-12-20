@@ -19,7 +19,7 @@ def add():
 
 @app.route('/update/<id>', methods=["POST"])
 def mark_completed(id: str):
-    trello_items.complete_item(id)
+    trello_items.change_status(id, "Done")
     return redirect('/')
 
 @app.route('/remove/<id>', methods=["POST"])
