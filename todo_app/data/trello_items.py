@@ -15,18 +15,18 @@ def get_items() -> list[Item]:
             cards.append(Item.from_trello_card(card, list))
     return cards
 
-def add_item(title: str, description: str = "", board: str = "To Do") -> None:
+def add_item(title: str, description: str = "", list: str = "To Do") -> None:
     url = f"https://api.trello.com/1/cards"
     params = _get_auth_params()
     params["desc"] = description
     params["name"] = title
-    params["idList"] = _get_list_id(board)
+    params["idList"] = _get_list_id(list)
     print(requests.request("POST", url, params=params, headers=headers))
 
-def change_status(id: str, board: str = "Done") -> None:
+def change_status(id: str, list: str = "Done") -> None:
     url = f"https://api.trello.com/1/cards/{id}"
     params = _get_auth_params()
-    params["idList"] = _get_list_id(board)
+    params["idList"] = _get_list_id(list)
     requests.request("PUT", url, params=params, headers=headers)
 
 def remove_item(id: str) -> None:
