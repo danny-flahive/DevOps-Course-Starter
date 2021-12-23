@@ -18,8 +18,13 @@ def add():
     return redirect('/')
 
 @app.route('/update/<id>', methods=["POST"])
-def mark_completed(id: str):
-    trello_items.change_status(id, "Done")
+def move_item(id: str):
+    if request.form["update"] == "Mark Completed":
+        trello_items.change_status(id, "Done")
+    elif request.form["update"] == "Set Doing":
+        trello_items.change_status(id, "Doing")
+    elif request.form["update"] == "Set To Do":
+        trello_items.change_status(id, "To Do")
     return redirect('/')
 
 @app.route('/remove/<id>', methods=["POST"])
