@@ -35,7 +35,19 @@ $ cp .env.template .env  # (first time only)
 ```
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
-You should replace the placeholders for in the file with your own Trello API key and token. You will also need the board ID of the board you created for this project, which you can get by addding .json to the end of the board URL - the first element should be your board ID.
+You should replace the placeholders for in the file with your own Trello API key and token. You will also need the board ID of the board you created for this project, which you can get by adding .json to the end of the board URL - the first element should be your board ID.
+
+## Testing
+
+PyTest should be installed after running poetry install in the previous step. To use pytest open a terminal, either on it's own or within VS Code. To run all tests, simply run `pytest`. This should discover all the tests according to the [discovery rules](https://docs.pytest.org/en/6.2.x/goodpractices.html#conventions-for-python-test-discovery). To only run tests from a specifc file you can run, for example:
+```bash 
+pytest todo_app/tests/test_viewmodel.py 
+```
+Change this to be the relative directory from where you're running the command. To run a specific test within a file, you can change this to be: 
+```bash 
+pytest todo_app/tests/test_viewmodel.py::test_pytest_works
+```
+where the name of the test specified after the `::` is run.
 
 ## Running the App
 
