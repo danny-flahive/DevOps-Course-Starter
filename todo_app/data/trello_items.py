@@ -1,10 +1,10 @@
 import os, requests
 from todo_app.Item import Item
 
-board = os.getenv("TRELLO_BOARD_ID")
 headers = {"Accept" : "application/json"}
 
 def get_items() -> list[Item]:
+    board = os.getenv("TRELLO_BOARD_ID")
     url = f"https://api.trello.com/1/boards/{board}/lists"
     params = _get_auth_params()
     params["cards"] = "open"
@@ -35,6 +35,7 @@ def remove_item(id: str) -> None:
     requests.request("DELETE", url, params=params, headers=headers)
 
 def _get_list_id(name: str) -> str:
+    board = os.getenv("TRELLO_BOARD_ID")
     url = f"https://api.trello.com/1/boards/{board}/lists"
     params = _get_auth_params()
     response = requests.request("GET", url, params=params, headers=headers).json()

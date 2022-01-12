@@ -18,7 +18,6 @@ def test_viewmodel_doing(viewmodel_test):
     with pytest.raises(IndexError):
         viewmodel_test.doing[1]
 
-
 def test_viewmodel_done(viewmodel_test):
     assert len(viewmodel_test.done) == 1
     assert viewmodel_test.done[0].name == "Done Test"
@@ -46,5 +45,11 @@ def stub(method, url, params, headers):
 
 class StubResponse:
     def json(x):
-        response = [{"id" : "A", "name" : "Test A", "cards" : [{"id" : "1", "name" : "Test 1A", "desc" : ""}, {"id" : "2", "name" : "Test 2A", "desc" : ""}]}, {"id" : "B", "name" : "Test B", "cards" : [{"id" : "1", "name" : "Test 1B", "desc" : ""}, {"id" : "2", "name" : "Test 2B", "desc" : ""}]}]
+        response = [
+            {"id" : "A", 
+            "name" : "Test A", 
+            "cards" : [{"id" : "1", "name" : "Test 1A", "desc" : ""}, {"id" : "2", "name" : "Test 2A", "desc" : ""}]}, 
+            {"id" : "B", 
+            "name" : "Test B", 
+            "cards" : [{"id" : "1", "name" : "Test 1B", "desc" : ""}, {"id" : "2", "name" : "Test 2B", "desc" : ""}]}]
         return response
