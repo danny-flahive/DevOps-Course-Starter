@@ -13,17 +13,14 @@ def client():
 def test_index_page(monkeypatch, client):
     monkeypatch.setattr(requests, 'request', get_lists_stub)
     response = client.get('/')
-    #assert response.json()["cards"]["id"] == "1A"
     assert response.status_code == 200
     assert "Test card" in response.data.decode()
 
 def test_remove(monkeypatch, client):
     monkeypatch.setattr(requests, 'request', get_lists_stub)
     response = client.get("/")
-    #Check the card is actually on the page to start with
     assert "Test card" in response.data.decode()
     response = client.post("/remove/1A")
-    #Test removing it works as expected
     assert "Test card" not in response.data.decode()
     
 
