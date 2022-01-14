@@ -11,25 +11,73 @@
     <div class="col-md-12">
       <h2>Items</h2>
       <ul class="list-group mb-4">
-        {% for item in items %}
-        <li class="list-group-item">
-          {{ item.name }} - {{ item.status }}
-          <br> {{ item.description }}
-          <div class="button-group">
-            {% if item.status != "Done" %}
-              <form action="/update/{{ item.id }}", method="post", class="form-group">
-                <input type="submit" value="Mark as Completed" class="btn btn-secondary btn-sm">
-              </form>
-              <!-- <a class="btn btn-secondary btn-sm" role="button" href="/update/{{ item.id }}">Mark as completed</a> -->
-            {% endif %}
-            <form action="/remove/{{ item.id }}", method="post", class="form-group">
-              <input type="submit" value="Remove Item" class="btn btn-secondary btn-sm">
-            </form>
-            <!-- <a class="btn btn-secondary btn-sm" role="button" href="/remove/{{ item.id }}">Remove item</a> -->
+        
+        <div class="row row-list">
+          <div class="col" name="To Do">
+            <h3>To Do</h3>
+            {% for item in view_model.to_do %}
+            <li class="list-group-item">
+              {{ item.name }} - {{ item.status }}
+              <br> <em>{{ item.description }}</em>
+              <div class="row button-group">
+                <form action="/update/{{ item.id }}", method="post", style="padding:5px", class="col form-group">
+                  <input type="submit" name="update" value="Set Doing" class="btn btn-secondary btn-sm">
+                </form>
+                <form action="/update/{{ item.id }}", method="post", style="padding:5px", class="col form-group">
+                  <input type="submit" name="update" value="Mark Completed" class="btn btn-secondary btn-sm">
+                </form>
+                <form action="/remove/{{ item.id }}", method="post", style="padding:5px", class="col form-group">
+                  <input type="submit" value="Remove Item" class="btn btn-secondary btn-sm">
+                </form>
+              </div>
+            </li>
+            {% endfor %}
           </div>
-        </li>
-        {% endfor %}
+
+          <div class="col" name="Doing">
+            <h3>Doing</h3>
+            {% for item in view_model.doing %}
+            <li class="list-group-item">
+              {{ item.name }} - {{ item.status }}
+              <br> <em>{{ item.description }}</em>
+              <div class="row button-group">
+                <form action="/update/{{ item.id }}", method="post", style="padding:5px", class="col form-group">
+                  <input type="submit" name="update" value="Set To Do" class="btn btn-secondary btn-sm">
+                </form>
+                <form action="/update/{{ item.id }}", method="post", style="padding:5px", class="col form-group">
+                  <input type="submit" name="update" value="Mark Completed" class="btn btn-secondary btn-sm">
+                </form>
+                <form action="/remove/{{ item.id }}", method="post",  style="padding:5px", class="col form-group">
+                  <input type="submit" value="Remove Item" class="btn btn-secondary btn-sm">
+                </form>
+              </div>
+            </li>
+            {% endfor %}
+          </div>
+
+          <div class="col" name="Done">
+            <h3>Done</h3>
+            {% for item in view_model.done %}
+            <li class="list-group-item">
+              {{ item.name }} - {{ item.status }}
+              <br> <em>{{ item.description }}</em>
+              <div class="row button-group">
+                <form action="/update/{{ item.id }}", method="post", style="padding:5px", class="col form-group">
+                  <input type="submit" name="update" value="Set To Do" class="btn btn-secondary btn-sm">
+                </form>
+                <form action="/update/{{ item.id }}", method="post", style="padding:5px", class="col form-group">
+                  <input type="submit" name="update" value="Set Doing" class="btn btn-secondary btn-sm">
+                </form>
+                <form action="/remove/{{ item.id }}", method="post", style="padding:5px", class="col form-group">
+                  <input type="submit" value="Remove Item" class="btn btn-secondary btn-sm">
+                </form>
+              </div>
+            </li>
+            {% endfor %}
+          </div>
+        </div>
       </ul>
+      
       <h2>Add Item</h2>
       <form action="/add", method="post", class="form-group">
         <div>
